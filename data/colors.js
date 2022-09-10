@@ -9,10 +9,6 @@ const reds = [
   "red",
   "firebrick",
   "darkred",
-]
-// length = 9
-
-const pinks = [
   "pink",
   "lightpink",
   "hotpink",
