@@ -2,7 +2,7 @@
 
 There are 147 named CSS colors -- how good are you at identifying them?
 
-## Getting Started: tktk
+## Getting Started
 
 ## Screenshots
 
