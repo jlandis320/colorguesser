@@ -60,3 +60,4 @@ setTimeout(() => { console.log("hello")}, 2000)
 //             * Option to stay in category or return to color wheel 
 
 // * If the player plays all the way to the end, they get a percentage score pulled from their score
+
