@@ -38,7 +38,8 @@ function init(){
 }
 
 function render() {
-  
+  currentColor.style.backgroundColor = unidentifiedColor
+  console.log("used colors: ", usedColors)
 }
 
 // function colorPicker(category, numColors)
@@ -48,7 +49,10 @@ function colorPicker(evt) {
   console.log(colorArray)
   unidentifiedColor = (colorArray[Math.floor(Math.random() * colorArray.length)]) 
   console.log("name this color: ", unidentifiedColor)
-  currentColor.style.backgroundColor = unidentifiedColor
+  
+  usedColors.push(unidentifiedColor)
+  console.log(usedColors)
+  render()
 }
 
 
