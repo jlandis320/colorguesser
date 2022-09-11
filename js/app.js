@@ -38,23 +38,30 @@ function init(){
 }
 
 function render() {
-  currentColor.style.backgroundColor = unidentifiedColor
-  console.log("used colors: ", usedColors)
+    currentColor.style.backgroundColor = unidentifiedColor
+    console.log("name this color: ", unidentifiedColor)
+    console.log("used colors: ", usedColors)
 }
+  
+
 
 // function colorPicker(category, numColors)
 function colorPicker(evt) {
   const categoryChoice = evt.target.id
   const colorArray = colors[categoryChoice]
-  console.log(colorArray)
-  unidentifiedColor = (colorArray[Math.floor(Math.random() * colorArray.length)]) 
-  console.log("name this color: ", unidentifiedColor)
-  
-  usedColors.push(unidentifiedColor)
-  console.log(usedColors)
-  render()
-}
+  // console.log(colorArray)
+  function getRandomColor() {
+    unidentifiedColor = colorArray[Math.floor(Math.random() * colorArray.length)]
+  }
+  getRandomColor()
+  if (usedColors.includes(unidentifiedColor)){
+    return
+  } else {
+    usedColors.push(unidentifiedColor)
+    render()
+  }
 
+}
 
 //  function increaseScore - += 1
 // function colorOptionsPicker
