@@ -16,14 +16,14 @@ let score, timeElapsed, correctAnswerChosen, unidentifiedColor
 /*------------------------ Cached Element References ------------------------*/
 const colorPalette = document.querySelectorAll(".color-chart")
 
-const currentColor = document.querySelector(".current-color")
+const currentColor = document.querySelector(".paintswatch")
 
 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-colorPalette.forEach(category => category.addEventListener("click", categoryClick))
+colorPalette.forEach(category => category.addEventListener("click", colorPicker))
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -42,21 +42,15 @@ function render() {
 }
 
 // function colorPicker(category, numColors)
-function categoryClick (evt) {
+function colorPicker(evt) {
   const categoryChoice = evt.target.id
   const colorArray = colors[categoryChoice]
   console.log(colorArray)
-  console.log(colorArray[Math.floor(Math.random() * colorArray.length)]) 
-  // return unidentifiedColor
+  unidentifiedColor = (colorArray[Math.floor(Math.random() * colorArray.length)]) 
+  console.log("name this color: ", unidentifiedColor)
+  currentColor.style.backgroundColor = unidentifiedColor
 }
 
-console.log("name this color: ", unidentifiedColor)
-
-function currentColorPicker(category){
-  return typeof reds[Math.floor(Math.random() * reds.length)]
-} 
-
-// console.log("random red: ", currentColorPicker());
 
 //  function increaseScore - += 1
 // function colorOptionsPicker
