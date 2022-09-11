@@ -1,14 +1,14 @@
 
 /*-------------------------------- Constants --------------------------------*/
 // all color arrays
-import { reds, oranges, yellows, greens, blues, purples, browns, grays, whites } from "../data/colors.js"
+import { colors } from "../data/colors.js"
 
 
 
 /*-------------------------------- Variables --------------------------------*/
 const colorOptions = []
 const usedColors = []
-let score, timeElapsed, correctAnswerChosen
+let score, timeElapsed, correctAnswerChosen, unidentifiedColor 
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -25,12 +25,10 @@ const currentColor = document.querySelector(".current-color")
 
 colorPalette.forEach(category => category.addEventListener("click", categoryClick))
 
-function categoryClick(evt) {
-  console.log(evt, ' clicked');
-}
 
 /*-------------------------------- Functions --------------------------------*/
 init()
+
 
 function init(){
   score = 0
@@ -38,12 +36,28 @@ function init(){
   correctAnswerChosen = false
 }
 
+function render() {
+  
+}
 
-colorOptions.push("red")
-console.log(typeof colorOptions, colorOptions);
-//  function increaseScore - += 1
 // function colorPicker(category, numColors)
-// function currentColorPicker 
+function categoryClick (evt) {
+  const categoryChoice = evt.target.id
+  const colorArray = colors[categoryChoice]
+  console.log(colorArray)
+  console.log(colorArray[Math.floor(Math.random() * colorArray.length)]) 
+  // return unidentifiedColor
+}
+
+console.log(unidentifiedColor)
+
+function currentColorPicker(category){
+  return typeof reds[Math.floor(Math.random() * reds.length)]
+} 
+
+// console.log("random red: ", currentColorPicker());
+
+//  function increaseScore - += 1
 // function colorOptionsPicker
 // handleClick for category
 // handleClick for buttons

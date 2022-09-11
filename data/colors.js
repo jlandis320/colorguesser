@@ -176,14 +176,17 @@ const grays = [
 // length = 10
 
 
-export {
-  reds,
-  oranges,
-  yellows,
-  greens,
-  blues,
-  purples,
-  browns,
-  whites,
-  grays,
-}
+
+  const colors = {
+    reds,
+    oranges,
+    yellows,
+    greens,
+    blues,
+    purples,
+    browns,
+    whites,
+    grays,
+  }
+
+  export { colors }
