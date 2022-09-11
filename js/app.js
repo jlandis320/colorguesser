@@ -8,7 +8,7 @@ import { colors } from "../data/colors.js"
 /*-------------------------------- Variables --------------------------------*/
 const colorOptions = []
 const usedColors = []
-let score, timeElapsed, correctAnswerChosen, unidentifiedColor 
+let score, timeElapsed, correctAnswerChosen, unidentifiedColor, colorOptionsArray
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -40,7 +40,7 @@ function init(){
 function render() {
     currentColor.style.backgroundColor = unidentifiedColor
     console.log("name this color: ", unidentifiedColor)
-    console.log("used colors: ", usedColors)
+    // console.log("used colors: ", usedColors)
 }
   
 
@@ -53,16 +53,35 @@ function colorPicker(evt) {
   function getRandomColor() {
     unidentifiedColor = colorArray[Math.floor(Math.random() * colorArray.length)]
   }
+
   getRandomColor()
   if (usedColors.includes(unidentifiedColor)){
     return
+    // can this return to getRandomColor, not colorPicker(evt)
   } else {
     usedColors.push(unidentifiedColor)
+    colorOptions.unshift(unidentifiedColor)
     render()
+  }  
+  colorOptionsArray = getMultipleRandom(colorArray, 3)
+  if (colorOptions.length === 1) {
+    colorOptionsArray.forEach(color => colorOptions.push(color))
+  } else if (colorOptions.length > 1 ) {
+    colorOptions.length = 1
+    colorOptionsArray.forEach(color => colorOptions.push(color))
   }
-
+  console.log("color Options: ", colorOptions); // 👉️ ['a', 'c'];
+  // console.log(getMultipleRandom(arr, 3)); // 👉️ ['c', 'b', 'c']
+  
+  
+  
 }
 
+
+function getMultipleRandom(arr, num) {
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num)
+}
 //  function increaseScore - += 1
 // function colorOptionsPicker
 // handleClick for category
