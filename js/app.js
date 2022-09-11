@@ -34,6 +34,7 @@ function init(){
   score = 0
   timeElapsed = 0
   correctAnswerChosen = false
+  unidentifiedColor = ''
 }
 
 function render() {
@@ -49,7 +50,7 @@ function categoryClick (evt) {
   // return unidentifiedColor
 }
 
-console.log(unidentifiedColor)
+console.log("name this color: ", unidentifiedColor)
 
 function currentColorPicker(category){
   return typeof reds[Math.floor(Math.random() * reds.length)]
