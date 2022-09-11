@@ -47,40 +47,40 @@ section > * {
   border-radius: 50%;
 }
 
-#sq0 {
+#reds {
   background-color: rgba(255, 4, 4, 0.8);
 }
 
-#sq1 {
+#oranges {
   background-color: rgba(255, 145, 2, 0.8);
 }
 
-#sq2 {
+#yellows {
   background-color: rgb(255, 255, 0, .8);
 }
 
-#sq3 {
+#greens {
   background-color: rgba(35, 171, 7, 0.8);
 }
 
-#sq4 {
+#blues {
   background-color: rgb(0, 0, 255, 0.8);
 }
 
-#sq5 {
+#purples {
   background-color: rgba(154, 30, 211, 0.78);
 }
 
-#sq6 {
+#browns {
   background-color: rgba(139, 69, 19, 0.834);
 }
 
-#sq7 {
+#grays {
   background-color: rgb(163, 163, 163, .8);
 }
 
-#sq8 {
-  background-color: rgba(245, 245, 245, 0.8);
+#whites {
+  background-color: rgba(255, 255, 255);
 }
 
 

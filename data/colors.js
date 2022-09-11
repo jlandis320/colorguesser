@@ -42,7 +42,7 @@ const yellows = [
   "darkkhaki"
 ]
 // length = 11
-console.log(yellows.length + 'yellows');
+
 const greens = [
   "greenyellow",
   "chartreuse",
@@ -174,17 +174,16 @@ const grays = [
   "black",
 ]
 // length = 10
-console.log(reds.length + pinks.length + oranges.length + yellows.length + greens.length + blues.length + purples.length + browns.length + whites.length + grays.length);
 
-// export {
-//   reds,
-//   pinks,
-//   oranges,
-//   yellows,
-//   greens,
-//   blues,
-//   purples,
-//   browns,
-//   whites,
-//   grays,
-// }
+
+export {
+  reds,
+  oranges,
+  yellows,
+  greens,
+  blues,
+  purples,
+  browns,
+  whites,
+  grays,
+}

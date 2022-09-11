@@ -1,18 +1,14 @@
-// import { reds, } from "../data/colors.js"
-
-// 
 
 /*-------------------------------- Constants --------------------------------*/
 // all color arrays
+import { reds, oranges, yellows, greens, blues, purples, browns, grays, whites } from "../data/colors.js"
 
 
 
 /*-------------------------------- Variables --------------------------------*/
-// currentColor
-// colorOptions (+currentColor)= []
-
-// usedColors = []
-// score
+const colorOptions = []
+const usedColors = []
+let score, timeElapsed, correctAnswerChosen
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -34,7 +30,18 @@ function categoryClick(evt) {
 }
 
 /*-------------------------------- Functions --------------------------------*/
-// function increaseScore - += 1
+init()
+
+function init(){
+  score = 0
+  timeElapsed = 0
+  correctAnswerChosen = false
+}
+
+
+colorOptions.push("red")
+console.log(typeof colorOptions, colorOptions);
+//  function increaseScore - += 1
 // function colorPicker(category, numColors)
 // function currentColorPicker 
 // function colorOptionsPicker
