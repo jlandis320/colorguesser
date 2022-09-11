@@ -12,3 +12,8 @@ Javascript, HTML, CSS
 
 ## Next Steps
 
+## Thanks to
+
+<a href="https://www.flaticon.com/free-icons/color" title="color icons">Color icons created by Soodesign - Flaticon</a>
+
+https://htmlcolorcodes.com/color-names/

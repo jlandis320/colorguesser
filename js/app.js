@@ -15,15 +15,23 @@
 // score
 // timeElapsed
 // correctAnswerChosen ?
-setTimeout(() => { console.log("hello")}, 2000)
+// setTimeout(() => { console.log("hello")}, 2000)
 
 /*------------------------ Cached Element References ------------------------*/
+const colorPalette = document.querySelectorAll(".color-chart")
+
+const currentColor = document.querySelector(".current-color")
+
 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
+colorPalette.forEach(category => category.addEventListener("click", categoryClick))
 
+function categoryClick(evt) {
+  console.log(evt, ' clicked');
+}
 
 /*-------------------------------- Functions --------------------------------*/
 // function increaseScore - += 1
