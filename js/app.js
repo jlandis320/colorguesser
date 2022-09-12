@@ -19,6 +19,8 @@ const colorPalette = document.querySelectorAll(".color-chart");
 
 const currentColor = document.querySelector(".paintswatch");
 
+const scoreDisplay = document.querySelector(".score")
+
 const colorName = document.querySelector(".color-name");
 
 const btnA = document.querySelector("#btn-0");
@@ -28,9 +30,7 @@ const btnD = document.querySelector("#btn-3");
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-colorPalette.forEach((category) =>
-  category.addEventListener("click", handleClick)
-);
+colorPalette.forEach((category) => category.addEventListener("click", handleClick));
 
 btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
@@ -131,12 +131,13 @@ function shuffle(array) {
 function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
+    renderScore()
     console.log("correct");
   }
 }
 
 function renderScore() {
-  
+  scoreDisplay.textContent = `${score}/143`
 }
 //  function increaseScore - += 1
 // function colorOptionsPicker
