@@ -60,23 +60,21 @@ function handleClick(evt) {
     colorName.textContent = "no more colors in category";
     return;
   } else {
-    unidentifiedColor = getRandomColor(colorArray);
-    usedColors.push(unidentifiedColor);
-    colorOptions.unshift(unidentifiedColor);
-    console.log(unidentifiedColor);
-    console.log("color array: ", colorArray);
-    console.log("used colors: ", usedColors);
-    render();
+    setNewColor(colorArray)
   }
 
   colorOptions = getColorOptions(colorArray);
-  // if (colorOptions.length === 1) {
-  //   colorOptionsArray.forEach(color => colorOptions.push(color))
-  // } else if (colorOptions.length > 1 ) {
-  //   colorOptions.length = 1
-  //   colorOptionsArray.forEach(color => colorOptions.push(color))
-  // }
   renderButtons();
+}
+
+function setNewColor(colorArray){
+  unidentifiedColor = getRandomColor(colorArray);
+  usedColors.push(unidentifiedColor);
+  colorOptions.unshift(unidentifiedColor);
+  console.log(unidentifiedColor);
+  console.log("color array: ", colorArray);
+  console.log("used colors: ", usedColors);
+  render();
 }
 
 function getColorOptions(colorArray) {
