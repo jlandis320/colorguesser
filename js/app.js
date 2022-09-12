@@ -42,7 +42,6 @@ function init(){
 
 function render() {
   renderPaintswatch()
-  renderButtons()
 }
   
 
@@ -60,23 +59,24 @@ function colorPicker(evt) {
   } else {
     usedColors.push(unidentifiedColor)
     colorOptions.unshift(unidentifiedColor)
-    render(),renderButtons()
+    render()
   }  
 
   let idx = colorArray.indexOf(unidentifiedColor) 
   colorArray.splice(idx, 1)
   colorOptionsArray = getMultipleRandom(colorArray, 3)
-
   if (colorOptions.length === 1) {
     colorOptionsArray.forEach(color => colorOptions.push(color))
   } else if (colorOptions.length > 1 ) {
     colorOptions.length = 1
     colorOptionsArray.forEach(color => colorOptions.push(color))
   }
-
+  renderButtons()
+  
   function getRandomColor() {
     unidentifiedColor = colorArray[Math.floor(Math.random() * colorArray.length)]
   }
+  console.log(unidentifiedColor)
   console.log("color Options: ", colorOptions);
 }
 
