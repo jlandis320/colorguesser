@@ -61,7 +61,7 @@ function colorPicker(evt) {
     }
 
   if (usedColors.includes(unidentifiedColor)){
-    return
+    getRandomColor()
     // can this return to getRandomColor, not colorPicker(evt)
   } else if (usedColors.length === colorArray.length) {
     console.log("no more colors")
