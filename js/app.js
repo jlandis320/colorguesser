@@ -24,6 +24,7 @@ const btnA = document.querySelector("#btn-a")
 const btnB = document.querySelector("#btn-b")
 const btnC = document.querySelector("#btn-c")
 const btnD = document.querySelector("#btn-d")
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 colorPalette.forEach(category => category.addEventListener("click", colorPicker))
@@ -56,14 +57,20 @@ function colorPicker(evt) {
   if (usedColors.includes(unidentifiedColor)){
     return
     // can this return to getRandomColor, not colorPicker(evt)
+  } else if (usedColors.length === colorArray.length) {
+    console.log("no more colors")
+    colorName.textContent = "no more colors in category"
+    return
   } else {
     usedColors.push(unidentifiedColor)
     colorOptions.unshift(unidentifiedColor)
+    console.log("color array: ", colorArray);
+    console.log("used colors: ", usedColors)
     render()
   }  
 
   let idx = colorArray.indexOf(unidentifiedColor) 
-  colorArray.splice(idx, 1)
+  colorArray.slice(idx, 1)
   colorOptionsArray = getMultipleRandom(colorArray, 3)
   if (colorOptions.length === 1) {
     colorOptionsArray.forEach(color => colorOptions.push(color))
@@ -77,7 +84,7 @@ function colorPicker(evt) {
     unidentifiedColor = colorArray[Math.floor(Math.random() * colorArray.length)]
   }
   console.log(unidentifiedColor)
-  console.log("color Options: ", colorOptions);
+  // console.log("color Options: ", colorOptions);
 }
 
 function renderPaintswatch() {
@@ -99,10 +106,14 @@ function getMultipleRandom(arr, num) {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, num)
 }
+
+// function getAnswer(){
+//   console.log("clicked");
+// }
 // function colorOptionsPicker
 // handleClick for category
 // handleClick for buttons
-// renderFunction = set color name to ?, set the color swatch to white, set the timer to 15s, score to 0
+// init = set color name to ?, set the color swatch to white, set the timer to 15s, score to 0
 
 
 /*-------------------------------- Pseudocode -------------------------------*/
