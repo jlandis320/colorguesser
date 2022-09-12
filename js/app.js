@@ -6,7 +6,7 @@ import { colors } from "../data/colors.js"
 
 
 /*-------------------------------- Variables --------------------------------*/
-const colorOptions = []
+let colorOptions = []
 const usedColors = []
 let score, timeElapsed, correctAnswerChosen, unidentifiedColor, colorOptionsArray
 // timeElapsed
@@ -20,14 +20,14 @@ const currentColor = document.querySelector(".paintswatch")
 
 const colorName = document.querySelector(".color-name")
 
-const btnA = document.querySelector("#btn-a")
-const btnB = document.querySelector("#btn-b")
-const btnC = document.querySelector("#btn-c")
-const btnD = document.querySelector("#btn-d")
+const btnA = document.querySelector("#btn-0")
+const btnB = document.querySelector("#btn-1")
+const btnC = document.querySelector("#btn-2")
+const btnD = document.querySelector("#btn-3")
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-colorPalette.forEach(category => category.addEventListener("click", colorPicker))
+colorPalette.forEach(category => category.addEventListener("click", handleClick))
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -48,7 +48,7 @@ function render() {
 
 
 // function colorPicker(category, numColors)
-function colorPicker(evt) {
+function handleClick(evt) {
   const categoryChoice = evt.target.id
   const colorArray = colors[categoryChoice]
 
@@ -56,41 +56,48 @@ function colorPicker(evt) {
     console.log("no more colors")
     colorName.textContent = "no more colors in category"
     return 
-    } else { 
-      getRandomColor()
-    }
-
-  if (usedColors.includes(unidentifiedColor)){
-    getRandomColor()
-    // can this return to getRandomColor, not colorPicker(evt)
-  } else if (usedColors.length === colorArray.length) {
-    console.log("no more colors")
-    colorName.textContent = "no more colors in category"
-    return
-  } else {
+  } else { 
+    unidentifiedColor = getRandomColor(colorArray)
     usedColors.push(unidentifiedColor)
     colorOptions.unshift(unidentifiedColor)
+    console.log(unidentifiedColor)
     console.log("color array: ", colorArray);
     console.log("used colors: ", usedColors)
     render()
   }  
 
-  let idx = colorArray.indexOf(unidentifiedColor) 
-  colorArray.slice(idx, 1)
-  colorOptionsArray = getMultipleRandom(colorArray, 3)
-  if (colorOptions.length === 1) {
-    colorOptionsArray.forEach(color => colorOptions.push(color))
-  } else if (colorOptions.length > 1 ) {
-    colorOptions.length = 1
-    colorOptionsArray.forEach(color => colorOptions.push(color))
-  }
+  colorOptions = getColorOptions(colorArray)
+  // if (colorOptions.length === 1) {
+  //   colorOptionsArray.forEach(color => colorOptions.push(color))
+  // } else if (colorOptions.length > 1 ) {
+  //   colorOptions.length = 1
+  //   colorOptionsArray.forEach(color => colorOptions.push(color))
+  // }
   renderButtons()
   
-  function getRandomColor() {
-    unidentifiedColor = colorArray[Math.floor(Math.random() * colorArray.length)]
+  
+  
+}
+
+function getColorOptions(colorArray){
+  const shuffledColorOptions = shuffle(colorArray)
+  console.log("color options: ", colorOptions)
+  console.log("color array: ", shuffledColorOptions);
+  const filtered = shuffledColorOptions.filter(c => c !== colorOptions[0])
+  console.log("filtered colorOptions: ", filtered)
+  const options = filtered.slice(0, 3)
+  console.log("incorrectOptions: ", options)
+  options.push(colorOptions[0])
+  console.log("all options: ", options)
+  return options
+}
+
+function getRandomColor(colorArray) {
+  let newColor = colorArray[Math.floor(Math.random() * colorArray.length)]
+  while (newColor === unidentifiedColor || usedColors.includes(newColor)){
+    newColor = colorArray[Math.floor(Math.random() * colorArray.length)]
   }
-  console.log(unidentifiedColor)
-  // console.log("color Options: ", colorOptions);
+  return newColor
 }
 
 function renderPaintswatch() {
@@ -100,13 +107,23 @@ function renderPaintswatch() {
 
 
 function renderButtons() {
-  colorOptions[Math.floor(Math.random() * colorOptions.length)]
-  btnA.textContent = colorOptions[0]
-  btnB.textContent = colorOptions[1]
-  btnC.textContent = colorOptions[2]
-  btnD.textContent = colorOptions[3]
+  const shuffledOptions = shuffle(colorOptions)
+  shuffledOptions.forEach((c, idx) => {
+    const btn = document.querySelector(`#btn-${idx}`)
+    btn.textContent = c
+  })
 }
 
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
 //  function increaseScore - += 1
 function getMultipleRandom(arr, num) {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
