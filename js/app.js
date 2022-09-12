@@ -18,9 +18,12 @@ const colorPalette = document.querySelectorAll(".color-chart")
 
 const currentColor = document.querySelector(".paintswatch")
 
+const colorName = document.querySelector(".color-name")
 
-
-
+const btnA = document.querySelector("#btn-a")
+const btnB = document.querySelector("#btn-b")
+const btnC = document.querySelector("#btn-c")
+const btnD = document.querySelector("#btn-d")
 /*----------------------------- Event Listeners -----------------------------*/
 
 colorPalette.forEach(category => category.addEventListener("click", colorPicker))
@@ -38,9 +41,8 @@ function init(){
 }
 
 function render() {
-    currentColor.style.backgroundColor = unidentifiedColor
-    console.log("name this color: ", unidentifiedColor)
-    // console.log("used colors: ", usedColors)
+  renderPaintswatch()
+  renderButtons()
 }
   
 
@@ -49,40 +51,54 @@ function render() {
 function colorPicker(evt) {
   const categoryChoice = evt.target.id
   const colorArray = colors[categoryChoice]
-  // console.log(colorArray)
-  function getRandomColor() {
-    unidentifiedColor = colorArray[Math.floor(Math.random() * colorArray.length)]
-  }
 
   getRandomColor()
+
   if (usedColors.includes(unidentifiedColor)){
     return
     // can this return to getRandomColor, not colorPicker(evt)
   } else {
     usedColors.push(unidentifiedColor)
     colorOptions.unshift(unidentifiedColor)
-    render()
+    render(),renderButtons()
   }  
+
+  let idx = colorArray.indexOf(unidentifiedColor) 
+  colorArray.splice(idx, 1)
   colorOptionsArray = getMultipleRandom(colorArray, 3)
+
   if (colorOptions.length === 1) {
     colorOptionsArray.forEach(color => colorOptions.push(color))
   } else if (colorOptions.length > 1 ) {
     colorOptions.length = 1
     colorOptionsArray.forEach(color => colorOptions.push(color))
   }
-  console.log("color Options: ", colorOptions); // 👉️ ['a', 'c'];
-  // console.log(getMultipleRandom(arr, 3)); // 👉️ ['c', 'b', 'c']
-  
-  
-  
+
+  function getRandomColor() {
+    unidentifiedColor = colorArray[Math.floor(Math.random() * colorArray.length)]
+  }
+  console.log("color Options: ", colorOptions);
+}
+
+function renderPaintswatch() {
+  currentColor.style.backgroundColor = unidentifiedColor
+  colorName.textContent = unidentifiedColor
 }
 
 
+function renderButtons() {
+  colorOptions[Math.floor(Math.random() * colorOptions.length)]
+  btnA.textContent = colorOptions[0]
+  btnB.textContent = colorOptions[1]
+  btnC.textContent = colorOptions[2]
+  btnD.textContent = colorOptions[3]
+}
+
+//  function increaseScore - += 1
 function getMultipleRandom(arr, num) {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, num)
 }
-//  function increaseScore - += 1
 // function colorOptionsPicker
 // handleClick for category
 // handleClick for buttons
