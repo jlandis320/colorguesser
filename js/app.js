@@ -52,7 +52,13 @@ function colorPicker(evt) {
   const categoryChoice = evt.target.id
   const colorArray = colors[categoryChoice]
 
-  getRandomColor()
+  if (usedColors.length === colorArray.length) {
+    console.log("no more colors")
+    colorName.textContent = "no more colors in category"
+    return 
+    } else { 
+      getRandomColor()
+    }
 
   if (usedColors.includes(unidentifiedColor)){
     return
