@@ -35,7 +35,11 @@ const countDown = document.querySelector(".timer")
 
 const startBtn = document.querySelector("#start-button")
 
+const usedColorsMsg = document.querySelector("#used-color-msg")
 // const allBtns = document.querySelectorAll(".buttons")
+const clickSound = new Audio("../audio/projector_click.mp3")
+
+const wrongAnswer = new Audio("../audio/whoosh.mp3")
 
 const btnA = document.querySelector("#btn-0");
 const btnB = document.querySelector("#btn-1");
@@ -66,12 +70,11 @@ function init() {
   unidentifiedColor = "";
 }
 
-function render() {
-  renderPaintswatch();
-}
 
 // function colorPicker(category, numColors)
 function handleClick(evt) {
+  clickSound.volume = .5
+  clickSound.play()
   clickCount++
   console.log("number of clicks: ", clickCount)
   const categoryChoice = evt.target.id;
@@ -97,7 +100,7 @@ function getNewPaintswatch(){
   } else {
     unidentifiedColor = getRandomColor(currentCategory);
     colorOptions.unshift(unidentifiedColor);
-    render()
+    renderPaintswatch();
     colorOptions = getColorOptions(currentCategory);
     renderButtons()
   }
@@ -110,6 +113,8 @@ function checkAnswer(evt){
     renderScore()
     getNewPaintswatch()
   } else {
+    wrongAnswer.volume = .5
+    wrongAnswer.play()
     usedColors.push(unidentifiedColor);
     getNewPaintswatch()
   }
@@ -117,9 +122,8 @@ function checkAnswer(evt){
 
 
 function startTimer(){
-  if (timerIntervalId) {
-    startBtn.disabled = true
-  } else if (usedColors.length === 141){
+  startBtn.disabled = true
+  if (usedColors.length === 141){
     clearInterval(timerIntervalId)
   }
   timerIntervalId = setInterval(tick, 1000)
@@ -191,6 +195,10 @@ function shuffle(array) {
 
 function renderScore() {
   scoreDisplay.textContent = `${score}/143`
+}
+
+function renderUCM() {
+  usedColorsMsg.textContent = `You've guessed ${usedColors.length} of 141 colors`
 }
 
 
