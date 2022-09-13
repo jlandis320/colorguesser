@@ -6,7 +6,8 @@ import { colors } from "../data/colors.js";
 let colorOptions = [];
 const usedColors = [];
 let score,
-  timeLeft,
+  timeElapsed,
+  timer,
   correctAnswerChosen,
   unidentifiedColor,
   currentCategory,
@@ -44,19 +45,9 @@ btnD.addEventListener("click", checkAnswer)
 /*-------------------------------- Functions --------------------------------*/
 init();
 
-let timer = setInterval(function() {
-  timeLeft -= 1
-  countDown.textContent = "Guess in: " + timeLeft
-  if (timeLeft === 0){
-    countDown.textContent = "Outta time"
-    clearInterval(timer)
-    console.log(timeLeft)
-  }
-}, 1000)
-
 function init() {
   score = 0;
-  timeLeft = 5;
+  timeElapsed = 0;
   correctAnswerChosen = false;
   unidentifiedColor = "";
 }
@@ -109,6 +100,17 @@ function checkAnswer(evt){
   } else {
     getNewPaintswatch()
   }
+}
+
+function startTimer(){
+  timer = setInterval(function() {
+    timeElapsed += 1
+    countDown.textContent = timeElapsed
+    if (usedColors.length === 141){
+      countDown.textContent = timeElapsed
+      clearInterval(timer)
+    }
+  }, 1000)
 }
 
 function getColorOptions(colorArray) {
@@ -169,6 +171,8 @@ function renderScore() {
   scoreDisplay.textContent = `${score}/143`
 }
 
+
+console.log("timer: ", timer)
 
 //  function increaseScore - += 1
 // function colorOptionsPicker
