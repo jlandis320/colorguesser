@@ -55,38 +55,50 @@ function handleClick(evt) {
   const categoryChoice = evt.target.id;
   const colorArray = colors[categoryChoice];
 
-  if (usedColors.length === colorArray.length) {
+  if (usedColors.length === 141) {
     console.log("no more colors");
-    colorName.textContent = "no more colors in category";
+    colorName.textContent = "you guessed all the colors";
     return;
+  } else if (colorArray.every(color => usedColors.includes(color))) {
+    colorName.textContent = "there are no more colors in this category"
+    return
   } else {
-    setNewColor(colorArray)
+    unidentifiedColor = getRandomColor(colorArray);
+    usedColors.push(unidentifiedColor);
+    colorOptions.unshift(unidentifiedColor);
+    console.log(unidentifiedColor);
+    // console.log("color array: ", colorArray);
+    // console.log("used colors: ", usedColors);
+    render();
   }
 
   colorOptions = getColorOptions(colorArray);
   renderButtons();
 }
 
-function setNewColor(colorArray){
-  unidentifiedColor = getRandomColor(colorArray);
-  usedColors.push(unidentifiedColor);
-  colorOptions.unshift(unidentifiedColor);
-  console.log(unidentifiedColor);
-  console.log("color array: ", colorArray);
-  console.log("used colors: ", usedColors);
-  render();
+// function setNewColor(colorArray){
+
+// }
+
+function checkAnswer(evt, colorArray){
+  if (evt.target.textContent === unidentifiedColor){
+    score++
+    renderScore()
+    setNewColor(colorArray)
+    console.log("correct");
+  }
 }
 
 function getColorOptions(colorArray) {
   const shuffledColorOptions = shuffle(colorArray);
-  console.log("color options: ", colorOptions);
-  console.log("color array: ", shuffledColorOptions);
+  // console.log("color options: ", colorOptions);
+  // console.log("color array: ", shuffledColorOptions);
   const filtered = shuffledColorOptions.filter((c) => c !== colorOptions[0]);
-  console.log("filtered colorOptions: ", filtered);
+  // console.log("filtered colorOptions: ", filtered);
   const options = filtered.slice(0, 3);
-  console.log("incorrectOptions: ", options);
+  // console.log("incorrectOptions: ", options);
   options.push(colorOptions[0]);
-  console.log("all options: ", options);
+  // console.log("all options: ", options);
   return options;
 }
 
@@ -126,17 +138,11 @@ function shuffle(array) {
   return array;
 }
 
-function checkAnswer(evt){
-  if (evt.target.textContent === unidentifiedColor){
-    score++
-    renderScore()
-    console.log("correct");
-  }
-}
-
 function renderScore() {
   scoreDisplay.textContent = `${score}/143`
 }
+
+console.log()
 //  function increaseScore - += 1
 // function colorOptionsPicker
 // handleClick for category
@@ -167,3 +173,4 @@ function renderScore() {
 //             * Option to stay in category or return to color wheel
 
 // * If the player plays all the way to the end, they get a percentage score pulled from their score
+

@@ -4,7 +4,6 @@ const reds = [
   "lightcoral",
   "salmon",
   "darksalmon",
-  "lightsalmon",
   "crimson",
   "red",
   "firebrick",
@@ -16,7 +15,7 @@ const reds = [
   "mediumvioletred",
   "palevioletred",
 ]
-// length = 6
+// length = 14
 
 const oranges = [
   "lightsalmon",
@@ -117,9 +116,8 @@ const purples = [
   "indigo",
   "slateblue",
   "darkslateblue",
-  "mediumslateblue"
 ]
-// length = 19
+// length = 18
 
 const browns = [
   "cornsilk",
@@ -188,5 +186,6 @@ const grays = [
     whites,
     grays,
   }
+// total = 141 colors, including rebeccapurple
 
   export { colors }
