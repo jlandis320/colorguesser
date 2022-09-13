@@ -8,10 +8,16 @@ const usedColors = [];
 let score,
   timeElapsed,
   timer,
+  timerIntervalId,
+  winTime, 
+  min,
+  sec, 
+  seconds,
   correctAnswerChosen,
   unidentifiedColor,
   currentCategory,
-  thisCategory;
+  thisCategory,
+  clickCount
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -27,6 +33,8 @@ const colorName = document.querySelector(".color-name");
 
 const countDown = document.querySelector(".timer")
 
+const startBtn = document.querySelector("#start-button")
+
 // const allBtns = document.querySelectorAll(".buttons")
 
 const btnA = document.querySelector("#btn-0");
@@ -38,6 +46,8 @@ const btnD = document.querySelector("#btn-3");
 
 colorPalette.forEach((category) => category.addEventListener("click", handleClick));
 
+startBtn.addEventListener("click", startTimer)
+
 btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
 btnC.addEventListener("click", checkAnswer)
@@ -46,8 +56,12 @@ btnD.addEventListener("click", checkAnswer)
 init();
 
 function init() {
+  clickCount = 0;
   score = 0;
-  timeElapsed = 0;
+  winTime = 0 
+  min = 0
+  sec = 0
+  seconds = 0
   correctAnswerChosen = false;
   unidentifiedColor = "";
 }
@@ -58,17 +72,17 @@ function render() {
 
 // function colorPicker(category, numColors)
 function handleClick(evt) {
+  clickCount++
+  console.log("number of clicks: ", clickCount)
   const categoryChoice = evt.target.id;
   thisCategory = evt.target
   const colorArray = colors[categoryChoice];
   currentCategory = colorArray
-  console.log("no answer usedColors: ", usedColors.length)
   getNewPaintswatch()
 }
 
 function getNewPaintswatch(){
   if (usedColors.length === 141) {
-    console.log("no more colors");
     thisCategory.textContent = "X"
     colorName.textContent = "you guessed all the colors!";
     return;
@@ -82,10 +96,7 @@ function getNewPaintswatch(){
     return
   } else {
     unidentifiedColor = getRandomColor(currentCategory);
-    // usedColors.push(unidentifiedColor);
     colorOptions.unshift(unidentifiedColor);
-    console.log(unidentifiedColor);
-    console.log(currentCategory)
     render()
     colorOptions = getColorOptions(currentCategory);
     renderButtons()
@@ -96,38 +107,44 @@ function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
     usedColors.push(unidentifiedColor);
-    console.log("right answer usedColors: ", usedColors.length)
     renderScore()
-    console.log("correct");
     getNewPaintswatch()
   } else {
     usedColors.push(unidentifiedColor);
-    console.log("wrong answer usedColors: ", usedColors.length)
     getNewPaintswatch()
   }
 }
 
+
 function startTimer(){
-  timer = setInterval(function() {
-    timeElapsed += 1
-    countDown.textContent = timeElapsed
-    if (usedColors.length === 141){
-      countDown.textContent = timeElapsed
-      clearInterval(timer)
-    }
-  }, 1000)
+  if (timerIntervalId) {
+    startBtn.disabled = true
+  } else if (usedColors.length === 141){
+    clearInterval(timerIntervalId)
+  }
+  timerIntervalId = setInterval(tick, 1000)
+  }
+
+function tick(){
+  seconds++
+  renderTime()
+}
+
+function renderTime(){
+  min = Math.floor(seconds / 60)
+  sec = seconds % 60
+  if (sec < 10){
+    countDown.textContent = `${min}:0${sec}`
+  } else {
+    countDown.textContent = `${min}:${sec}`
+  }
 }
 
 function getColorOptions(colorArray) {
   const shuffledColorOptions = shuffle(colorArray);
-  // console.log("color options: ", colorOptions);
-  // console.log("color array: ", shuffledColorOptions);
   const filtered = shuffledColorOptions.filter((c) => c !== colorOptions[0]);
-  // console.log("filtered colorOptions: ", filtered);
   const options = filtered.slice(0, 3);
-  // console.log("incorrectOptions: ", options);
   options.push(colorOptions[0]);
-  // console.log("all options: ", options);
   return options;
 }
 
@@ -176,8 +193,6 @@ function renderScore() {
   scoreDisplay.textContent = `${score}/143`
 }
 
-
-console.log("timer: ", timer)
 
 //  function increaseScore - += 1
 // function colorOptionsPicker
