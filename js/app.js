@@ -62,6 +62,7 @@ function handleClick(evt) {
   thisCategory = evt.target
   const colorArray = colors[categoryChoice];
   currentCategory = colorArray
+  console.log("no answer usedColors: ", usedColors.length)
   getNewPaintswatch()
 }
 
@@ -81,7 +82,7 @@ function getNewPaintswatch(){
     return
   } else {
     unidentifiedColor = getRandomColor(currentCategory);
-    usedColors.push(unidentifiedColor);
+    // usedColors.push(unidentifiedColor);
     colorOptions.unshift(unidentifiedColor);
     console.log(unidentifiedColor);
     console.log(currentCategory)
@@ -94,10 +95,14 @@ function getNewPaintswatch(){
 function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
+    usedColors.push(unidentifiedColor);
+    console.log("right answer usedColors: ", usedColors.length)
     renderScore()
     console.log("correct");
     getNewPaintswatch()
   } else {
+    usedColors.push(unidentifiedColor);
+    console.log("wrong answer usedColors: ", usedColors.length)
     getNewPaintswatch()
   }
 }
