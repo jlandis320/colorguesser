@@ -17,3 +17,5 @@ Javascript, HTML, CSS
 <a href="https://www.flaticon.com/free-icons/color" title="color icons">Color icons created by Soodesign - Flaticon</a>
 
 https://htmlcolorcodes.com/color-names/
+
+https://www.designcise.com/web/tutorial/how-to-check-if-an-array-contains-all-elements-of-another-array-in-javascript

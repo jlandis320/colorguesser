@@ -23,6 +23,7 @@ const scoreDisplay = document.querySelector(".score")
 
 const colorName = document.querySelector(".color-name");
 
+
 const btnA = document.querySelector("#btn-0");
 const btnB = document.querySelector("#btn-1");
 const btnC = document.querySelector("#btn-2");
@@ -64,6 +65,10 @@ function getNewPaintswatch(){
     colorName.textContent = "you guessed all the colors!";
     return;
   } else if (currentCategory.every(color => usedColors.includes(color))) {
+    btnA.disabled = true
+    btnB.disabled = true
+    btnC.disabled = true
+    btnC.disabled = true
     colorName.textContent = "choose another category from the palette"
     return
   } else {
@@ -83,6 +88,8 @@ function checkAnswer(evt){
     score++
     renderScore()
     console.log("correct");
+    getNewPaintswatch()
+  } else {
     getNewPaintswatch()
   }
 }
