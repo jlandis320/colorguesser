@@ -9,7 +9,7 @@ let score,
   timeElapsed,
   correctAnswerChosen,
   unidentifiedColor,
-  colorOptionsArray;
+  currentCategory;
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -54,38 +54,36 @@ function render() {
 function handleClick(evt) {
   const categoryChoice = evt.target.id;
   const colorArray = colors[categoryChoice];
+  currentCategory = colorArray
+  getNewPaintswatch()
+}
 
+function getNewPaintswatch(){
   if (usedColors.length === 141) {
     console.log("no more colors");
-    colorName.textContent = "you guessed all the colors";
+    colorName.textContent = "you guessed all the colors!";
     return;
-  } else if (colorArray.every(color => usedColors.includes(color))) {
-    colorName.textContent = "there are no more colors in this category"
+  } else if (currentCategory.every(color => usedColors.includes(color))) {
+    colorName.textContent = "choose another category from the palette"
     return
   } else {
-    unidentifiedColor = getRandomColor(colorArray);
+    unidentifiedColor = getRandomColor(currentCategory);
     usedColors.push(unidentifiedColor);
     colorOptions.unshift(unidentifiedColor);
     console.log(unidentifiedColor);
-    // console.log("color array: ", colorArray);
-    // console.log("used colors: ", usedColors);
-    render();
+    console.log(currentCategory)
+    render()
+    colorOptions = getColorOptions(currentCategory);
+    renderButtons()
   }
-
-  colorOptions = getColorOptions(colorArray);
-  renderButtons();
 }
 
-// function setNewColor(colorArray){
-
-// }
-
-function checkAnswer(evt, colorArray){
+function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
     renderScore()
-    setNewColor(colorArray)
     console.log("correct");
+    getNewPaintswatch()
   }
 }
 
@@ -142,7 +140,6 @@ function renderScore() {
   scoreDisplay.textContent = `${score}/143`
 }
 
-console.log()
 //  function increaseScore - += 1
 // function colorOptionsPicker
 // handleClick for category
