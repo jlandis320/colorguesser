@@ -1,6 +1,22 @@
 # Do you know Roy G Biv? 
 
-There are 147 named CSS colors -- how good are you at identifying them?
+There are 141 named CSS colors -- how good are you at identifying them?
+
+NOTE: 
+You may be saying, "I heard there were 147 CSS color names!" Well, yes. There are 147 color NAMES but there are actually only 139 colors.
+ 
+8 colors have duplicate names -- 
+Aqua/Cyan
+Fuschia/Magenta
+DarkGrey/DarkGray
+Gray/Grey
+DimGrey/DimGray
+LightSlateGrey/LightSlateGray
+SlateGrey/SlateGray
+DarkSlateGrey/DarkSlateGray
+
+I included both aqua/cyan and fuschia/magenta but not the duplicate grays. 
+
 
 ## Getting Started
 

@@ -9,7 +9,8 @@ let score,
   timeElapsed,
   correctAnswerChosen,
   unidentifiedColor,
-  currentCategory;
+  currentCategory,
+  thisCategory;
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -23,6 +24,7 @@ const scoreDisplay = document.querySelector(".score")
 
 const colorName = document.querySelector(".color-name");
 
+// const allBtns = document.querySelectorAll(".buttons")
 
 const btnA = document.querySelector("#btn-0");
 const btnB = document.querySelector("#btn-1");
@@ -54,6 +56,7 @@ function render() {
 // function colorPicker(category, numColors)
 function handleClick(evt) {
   const categoryChoice = evt.target.id;
+  thisCategory = evt.target
   const colorArray = colors[categoryChoice];
   currentCategory = colorArray
   getNewPaintswatch()
@@ -70,6 +73,7 @@ function getNewPaintswatch(){
     btnC.disabled = true
     btnD.disabled = true
     colorName.textContent = "choose another category from the palette"
+    thisCategory.textContent = "X"
     return
   } else {
     unidentifiedColor = getRandomColor(currentCategory);
@@ -106,6 +110,7 @@ function getColorOptions(colorArray) {
   // console.log("all options: ", options);
   return options;
 }
+
 
 function getRandomColor(colorArray) {
   let newColor = colorArray[Math.floor(Math.random() * colorArray.length)];
