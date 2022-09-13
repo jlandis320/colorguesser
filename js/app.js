@@ -6,7 +6,7 @@ import { colors } from "../data/colors.js";
 let colorOptions = [];
 const usedColors = [];
 let score,
-  timeElapsed,
+  timeLeft,
   correctAnswerChosen,
   unidentifiedColor,
   currentCategory,
@@ -23,6 +23,8 @@ const currentColor = document.querySelector(".paintswatch");
 const scoreDisplay = document.querySelector(".score")
 
 const colorName = document.querySelector(".color-name");
+
+const countDown = document.querySelector(".timer")
 
 // const allBtns = document.querySelectorAll(".buttons")
 
@@ -42,9 +44,19 @@ btnD.addEventListener("click", checkAnswer)
 /*-------------------------------- Functions --------------------------------*/
 init();
 
+let timer = setInterval(function() {
+  timeLeft -= 1
+  countDown.textContent = "Guess in: " + timeLeft
+  if (timeLeft === 0){
+    countDown.textContent = "Outta time"
+    clearInterval(timer)
+    console.log(timeLeft)
+  }
+}, 1000)
+
 function init() {
   score = 0;
-  timeElapsed = 0;
+  timeLeft = 5;
   correctAnswerChosen = false;
   unidentifiedColor = "";
 }
@@ -65,6 +77,7 @@ function handleClick(evt) {
 function getNewPaintswatch(){
   if (usedColors.length === 141) {
     console.log("no more colors");
+    thisCategory.textContent = "X"
     colorName.textContent = "you guessed all the colors!";
     return;
   } else if (currentCategory.every(color => usedColors.includes(color))) {
@@ -155,6 +168,7 @@ function shuffle(array) {
 function renderScore() {
   scoreDisplay.textContent = `${score}/143`
 }
+
 
 //  function increaseScore - += 1
 // function colorOptionsPicker
