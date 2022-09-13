@@ -68,7 +68,7 @@ function getNewPaintswatch(){
     btnA.disabled = true
     btnB.disabled = true
     btnC.disabled = true
-    btnC.disabled = true
+    btnD.disabled = true
     colorName.textContent = "choose another category from the palette"
     return
   } else {
@@ -121,6 +121,10 @@ function renderPaintswatch() {
 }
 
 function renderButtons() {
+  btnA.disabled = false
+  btnB.disabled = false
+  btnC.disabled = false
+  btnD.disabled = false
   const shuffledOptions = shuffle(colorOptions);
   shuffledOptions.forEach((c, idx) => {
     const btn = document.querySelector(`#btn-${idx}`);
