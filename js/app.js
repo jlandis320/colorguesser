@@ -50,7 +50,7 @@ const btnD = document.querySelector("#btn-3");
 
 colorPalette.forEach((category) => category.addEventListener("click", handleClick));
 
-startBtn.addEventListener("click", startTimer)
+// startBtn.addEventListener("click", startTimer)
 
 btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
@@ -76,6 +76,9 @@ function handleClick(evt) {
   clickSound.volume = .5
   clickSound.play()
   clickCount++
+  if (clickCount === 1){
+    startTimer()
+  }
   console.log("number of clicks: ", clickCount)
   const categoryChoice = evt.target.id;
   thisCategory = evt.target
@@ -83,6 +86,8 @@ function handleClick(evt) {
   currentCategory = colorArray
   getNewPaintswatch()
 }
+
+
 
 function getNewPaintswatch(){
   if (usedColors.length === 141) {
@@ -119,7 +124,6 @@ function checkAnswer(evt){
     getNewPaintswatch()
   }
 }
-
 
 function startTimer(){
   startBtn.disabled = true
