@@ -38,8 +38,8 @@ const startBtn = document.querySelector("#start-button")
 const usedColorsMsg = document.querySelector("#used-color-msg")
 // const allBtns = document.querySelectorAll(".buttons")
 const clickSound = new Audio("../audio/projector_click.mp3")
-
 const wrongAnswer = new Audio("../audio/whoosh.mp3")
+const rightAnswer = new Audio("../audio/chime.mp3")
 
 const btnA = document.querySelector("#btn-0");
 const btnB = document.querySelector("#btn-1");
@@ -50,7 +50,7 @@ const btnD = document.querySelector("#btn-3");
 
 colorPalette.forEach((category) => category.addEventListener("click", handleClick));
 
-// startBtn.addEventListener("click", startTimer)
+startBtn.addEventListener("click", startTimer)
 
 btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
@@ -73,13 +73,9 @@ function init() {
 
 // function colorPicker(category, numColors)
 function handleClick(evt) {
-  clickSound.volume = .5
-  clickSound.play()
+  playClick()
   clickCount++
-  if (clickCount === 1){
-    startTimer()
-  }
-  console.log("number of clicks: ", clickCount)
+  console.log("clickCount: ", clickCount)
   const categoryChoice = evt.target.id;
   thisCategory = evt.target
   const colorArray = colors[categoryChoice];
@@ -115,11 +111,11 @@ function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
     usedColors.push(unidentifiedColor);
+    playChime()
     renderScore()
     getNewPaintswatch()
   } else {
-    wrongAnswer.volume = .5
-    wrongAnswer.play()
+    playWhoosh()
     usedColors.push(unidentifiedColor);
     getNewPaintswatch()
   }
@@ -205,35 +201,22 @@ function renderUCM() {
   usedColorsMsg.textContent = `You've guessed ${usedColors.length} of 141 colors`
 }
 
+function playClick(){
+  clickSound.currentTime = 0
+  clickSound.volume = .5
+  clickSound.play()
+}
 
-//  function increaseScore - += 1
-// function colorOptionsPicker
-// handleClick for category
-// handleClick for buttons
-// init = set color name to ?, set the color swatch to white, set the timer to 15s, score to 0
+function playWhoosh(){
+  wrongAnswer.currentTime = 0 
+  wrongAnswer.volume = .5
+  wrongAnswer.play()
+}
 
-/*-------------------------------- Pseudocode -------------------------------*/
+function playChime(){
+  rightAnswer.currentTime = 0
+  rightAnswer.volume = .5
+  rightAnswer.play()
+}
 
-// // Create data file with category arrays: warms, cools, grays, white
-// * Render function: categories display with score display, empty paint swatch with empty button choices
-//     * Need a color wheel divided into 10 quadrants — add event listener to each quadrant
-
-// * When clicked, paint swatch changes to random color from that cateory
-//     * Say for reds:
-//         * Randomly pull a color from warms to color paint swatch
-//         * Randomly pull 3 color names + correct name for the options & 15 second timer
-//         * Randomly assign colors to
-//             * Timer length may change after testing. May add option be toggled off
-//         * If correct name is chosen
-//             * Score increases by 1
-//             * Option to stay in category or return to color wheel
-//             * Move correct guess into another array
-// * have random guess checked against used color array -> if it's in there, choose a different color
-//         * Else
-//             * Player loses that question. Score does not increase
-//             * That color name is removed from options for the next round
-
-//             * Option to stay in category or return to color wheel
-
-// * If the player plays all the way to the end, they get a percentage score pulled from their score
 

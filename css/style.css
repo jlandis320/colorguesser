@@ -6,7 +6,7 @@ body {
 #wrapper {
   display: grid;
   height: fit-content;
-  width: auto;
+  width: 1000px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   gap: 10px;
@@ -110,16 +110,17 @@ section > * {
 
 .timer {
   display: flex;
+  flex-direction: column;
   grid-row: 1;
   grid-column: 2;
   justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
 #start-button {
   width: fit-content;
   height: fit-content;
-  place-self: flex-start flex-end;
 }
 
 .paintswatch {
