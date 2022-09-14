@@ -50,6 +50,10 @@ section > * {
   border-radius: 50%;
 }
 
+section > *:hover{
+  cursor: pointer;
+}
+
 #reds {
   background-color: rgba(255, 4, 4, 0.8);
 }
@@ -111,6 +115,10 @@ section > * {
   display: flex;
   justify-self: space-around;
   padding: 10px;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 #btn-0 {
