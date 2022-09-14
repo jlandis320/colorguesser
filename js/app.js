@@ -209,7 +209,7 @@ function playClick(){
 
 function playWhoosh(){
   wrongAnswer.currentTime = 0 
-  wrongAnswer.volume = .5
+  wrongAnswer.volume = .3
   wrongAnswer.play()
 }
 
