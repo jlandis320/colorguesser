@@ -57,6 +57,10 @@ btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
 btnC.addEventListener("click", checkAnswer)
 btnD.addEventListener("click", checkAnswer)
+btnA.addEventListener("click", renderUCM)
+btnB.addEventListener("click", renderUCM)
+btnC.addEventListener("click", renderUCM)
+btnD.addEventListener("click", renderUCM)
 /*-------------------------------- Functions --------------------------------*/
 init();
 
@@ -99,8 +103,12 @@ function getNewPaintswatch(){
   if (usedColors.length === 141) {
     thisCategory.textContent = "X"
     colorName.textContent = "you guessed all the colors!";
+    btnA.disabled = true
+    btnB.disabled = true
+    btnC.disabled = true
+    btnD.disabled = true
     return;
-  } else if (currentCategory.every(color => usedColors.includes(color))) {
+  } else if (currentCategory.every(color => usedColors.includes(color)) && usedColors.length < 141) {
     btnA.disabled = true
     btnB.disabled = true
     btnC.disabled = true
@@ -124,7 +132,7 @@ function checkAnswer(evt){
     playChime()
     renderScore()
     getNewPaintswatch()
-  } else {
+  } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
     playWhoosh()
     getNewPaintswatch()
@@ -203,7 +211,7 @@ function shuffle(array) {
 }
 
 function renderScore() {
-  scoreDisplay.textContent = `${score}/143`
+  scoreDisplay.textContent = `${score}/141`
 }
 
 function renderUCM() {

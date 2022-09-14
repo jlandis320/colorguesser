@@ -87,7 +87,7 @@ section > * {
 }
 
 
-.score {
+.messages {
   grid-area: 5 / 1 / 6 / 2;
   border: 2px solid black;
   margin: 60px;
