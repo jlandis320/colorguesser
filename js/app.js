@@ -17,7 +17,8 @@ let score,
   unidentifiedColor,
   currentCategory,
   thisCategory,
-  clickCount
+  clickCount,
+  gameStarted
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -38,7 +39,7 @@ const startBtn = document.querySelector("#start-button")
 const usedColorsMsg = document.querySelector("#used-color-msg")
 // const allBtns = document.querySelectorAll(".buttons")
 const clickSound = new Audio("../audio/projector_click.mp3")
-const wrongAnswer = new Audio("../audio/whoosh.mp3")
+const wrongAnswer = new Audio("../audio/wrong.mp3")
 const rightAnswer = new Audio("../audio/chime.mp3")
 
 const btnA = document.querySelector("#btn-0");
@@ -50,7 +51,7 @@ const btnD = document.querySelector("#btn-3");
 
 colorPalette.forEach((category) => category.addEventListener("click", handleClick));
 
-startBtn.addEventListener("click", startTimer)
+startBtn.addEventListener("click", startGame)
 
 btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
@@ -68,21 +69,30 @@ function init() {
   seconds = 0
   correctAnswerChosen = false;
   unidentifiedColor = "";
+  gameStarted = false
 }
 
+function startGame() {
+  startTimer()
+  gameStarted = true
+}
 
-// function colorPicker(category, numColors)
+console.log("gameStarted = ", gameStarted)
+
 function handleClick(evt) {
-  playClick()
-  clickCount++
-  console.log("clickCount: ", clickCount)
   const categoryChoice = evt.target.id;
   thisCategory = evt.target
   const colorArray = colors[categoryChoice];
   currentCategory = colorArray
+  if (currentCategory){
+    playClick()
+  }
   getNewPaintswatch()
 }
 
+// } else {
+//   colorName.textContent = "Click the start button!"
+// }
 
 
 function getNewPaintswatch(){
@@ -122,7 +132,6 @@ function checkAnswer(evt){
 }
 
 function startTimer(){
-  startBtn.disabled = true
   if (usedColors.length === 141){
     clearInterval(timerIntervalId)
   }
