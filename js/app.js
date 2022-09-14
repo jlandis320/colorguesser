@@ -115,8 +115,8 @@ function checkAnswer(evt){
     renderScore()
     getNewPaintswatch()
   } else {
-    playWhoosh()
     usedColors.push(unidentifiedColor);
+    playWhoosh()
     getNewPaintswatch()
   }
 }
