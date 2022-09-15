@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 // all color arrays
-import { colors, allColors } from "../data/colors.js";
+import { colors, allColors, colorValuesLUT } from "../data/colors.js";
 
 /*-------------------------------- Variables --------------------------------*/
 let colorOptions = [];
@@ -201,7 +201,13 @@ function getColorOptions(colorArray) {
   const filtered = shuffledColorOptions.filter((c) => c !== colorOptions[0]);
   const options = filtered.slice(0, 3);
   options.push(colorOptions[0]);
-  return options;
+  return nightmareMode
+    ? convertNamedToHex(options)
+    : options
+}
+
+function convertNamedToHex(arr){
+  return arr.map(color => colorValuesLUT.find(colorObj => color === colorObj.name.toLowerCase())?.hex ?? color)
 }
 
 
@@ -210,7 +216,13 @@ function getRandomColor(colorArray) {
   while (newColor === unidentifiedColor || usedColors.includes(newColor)) {
     newColor = colorArray[Math.floor(Math.random() * colorArray.length)];
   }
-  return newColor;
+  return nightmareMode 
+    ? convertColorToHex(newColor)
+    : newColor
+}
+
+function convertColorToHex(color){
+  return colorValuesLUT.find(colorObj => colorObj.name.toLowerCase() === color).hex
 }
 
 function renderPaintswatch() {
@@ -241,7 +253,6 @@ function shuffle(array) {
   }
   return array;
 }
-
 
 function renderScore() {
   scoreDisplay.textContent = `${score}/141`
