@@ -241,8 +241,14 @@ function renderUCM() {
   }
 }
 
+renderWinMsg()
+
 function renderWinMsg() {
-  currentColor.textContent = `Congratulations! You named ${score} colors in ${countDownMsg}`
+  if (countDownMsg === undefined) {
+    currentColor.textContent = `Congratulations! You named ${score} colors.`
+  } else {
+    currentColor.textContent = `Congratulations! You named ${score} colors in ${countDownMsg}`
+  }
 }
 
 function playClick(){
