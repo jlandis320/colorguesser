@@ -151,13 +151,13 @@ function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
     usedColors.push(unidentifiedColor);
-    msgEl.innerText = `Nice, it was ${unidentifiedColor}`
+    if (!nightmareMode) msgEl.innerText = `Nice, it was ${unidentifiedColor}`
     playChime()
     renderScore()
     getNewPaintswatch()
   } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
-    msgEl.innerText = `Nope, it was ${unidentifiedColor}`
+    if (!nightmareMode) msgEl.innerText = `Nope, it was ${unidentifiedColor}`
     playWhoosh()
     getNewPaintswatch()
   }
@@ -302,7 +302,14 @@ function enableBtns() {
 }
 
 function toggleNightmareMode(){
-  nightmareMode = true
-  titleH1El.style.color = 'red'
-  changeBackgroundAtRandom()
+  if(nightmareMode === false) {
+    nightmareMode = true
+    titleH1El.style.color = 'red'
+    msgEl.innerText = "You shouldn't have done that"
+    changeBackgroundAtRandom()
+  } else {
+    nightmareMode = false
+    bodyEl.style.backgroundColor = 'lemonchiffon'
+    msgEl.innerText = "Quitter..."
+  }
 }
