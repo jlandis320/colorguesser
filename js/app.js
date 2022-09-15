@@ -19,6 +19,8 @@ let score,
   thisCategory,
   clickCount,
   gameStarted
+
+  let trueLength = usedColors.filter(color => color.length > 0)
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -57,14 +59,18 @@ btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
 btnC.addEventListener("click", checkAnswer)
 btnD.addEventListener("click", checkAnswer)
-// btnA.addEventListener("click", renderUCM)
-// btnB.addEventListener("click", renderUCM)
-// btnC.addEventListener("click", renderUCM)
-// btnD.addEventListener("click", renderUCM)
+btnA.addEventListener("click", revealName)
+btnB.addEventListener("click", revealName)
+btnC.addEventListener("click", revealName)
+btnD.addEventListener("click", revealName)
 /*-------------------------------- Functions --------------------------------*/
 init();
 
 function init() {
+  btnA.disabled = false
+  btnB.disabled = false
+  btnC.disabled = false
+  btnD.disabled = false
   clickCount = 0;
   score = 0;
   winTime = 0 
@@ -74,6 +80,7 @@ function init() {
   correctAnswerChosen = false;
   unidentifiedColor = "";
   gameStarted = false
+  console.log("on init: ", colorName.classList.value);
 }
 
 function startGame() {
@@ -97,7 +104,10 @@ function handleClick(evt) {
 // } else {
 //   colorName.textContent = "Click the start button!"
 // }
-
+function render(){
+  renderPaintswatch()
+  renderButtons()
+}
 
 function getNewPaintswatch(){
   if (usedColors.length === 141) {
@@ -119,9 +129,8 @@ function getNewPaintswatch(){
   } else {
     unidentifiedColor = getRandomColor(currentCategory);
     colorOptions.unshift(unidentifiedColor);
-    renderPaintswatch();
+    setTimeout(() => {render()}, 500);
     colorOptions = getColorOptions(currentCategory);
-    renderButtons()
   }
 }
 
@@ -131,14 +140,20 @@ function checkAnswer(evt){
     usedColors.push(unidentifiedColor);
     playChime()
     renderScore()
-    renderUCM()
     getNewPaintswatch()
   } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
     playWhoosh()
-    renderUCM()
     getNewPaintswatch()
   }
+  renderUCM()
+}
+
+
+function revealName(){
+  colorName.classList.remove('placeholder')
+  colorName.textContent = unidentifiedColor
+  console.log(colorName.classList.value)
 }
 
 function startTimer(){
@@ -182,14 +197,10 @@ function getRandomColor(colorArray) {
 
 function renderPaintswatch() {
   currentColor.style.backgroundColor = unidentifiedColor;
-  colorName.textContent = unidentifiedColor;
+  colorName.classList.add('placeholder') 
 }
 
 function renderButtons() {
-  btnA.disabled = false
-  btnB.disabled = false
-  btnC.disabled = false
-  btnD.disabled = false
   const shuffledOptions = shuffle(colorOptions);
   shuffledOptions.forEach((c, idx) => {
     const btn = document.querySelector(`#btn-${idx}`);
@@ -218,7 +229,7 @@ function renderScore() {
 }
 
 function renderUCM() {
-  let trueLength = usedColors.filter(color => color.length > 0)
+  // let trueLength = usedColors.filter(color => color.length > 0)
   if (trueLength.length === 0) {
     usedColorsMsg.textContent = `You haven't guessed any colors yet!`
   } else {

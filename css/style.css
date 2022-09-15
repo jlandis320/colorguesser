@@ -30,6 +30,7 @@ p {
   display:flex;
   height: fit-content;
   place-self: center left;
+  margin-left: 50px;
 }
 
 section.color-chart {
@@ -113,7 +114,7 @@ section > *:hover{
 .buttons > * {
   min-width: 150px;
   display: flex;
-  justify-self: space-around;
+  justify-content: center;
   padding: 10px;
 }
 
@@ -160,6 +161,10 @@ section > *:hover{
   max-height: 475px;
   display: flex;
   border: 2px solid black;
+}
+
+.placeholder {
+  width: 35%; 
 }
 
 .paintswatch > * {
