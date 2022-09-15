@@ -1,6 +1,6 @@
 # Do you know Roy G. Biv? 
 
-There are 141 named CSS colors -- how good are you at identifying them?
+There are 141 named CSS colors -- how well do you know them?
 
 If you want to test yourself in a timed environment, click start timer. Otherwise, click a category to get started. The paint swatch will display an unidentified color -- guess the name with the buttons below the paint swatch. If you're right, you'll hear a chime and your score will increase. If you're wrong, you'll hear a buzzer and no point. The game ends when you've guessed all 141 colors. 
 

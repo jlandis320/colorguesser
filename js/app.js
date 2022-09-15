@@ -114,6 +114,7 @@ function getNewPaintswatch(){
     thisCategory.style.opacity = "25%"
     clearInterval(timer)
     disableBtns()
+    renderWinMsg()
     return;
   } else if (currentCategory.every(color => trueLength.includes(color)) && trueLength.length < 141) {
     disableBtns()
@@ -133,7 +134,6 @@ function getNewPaintswatch(){
 }
 
 function checkAnswer(evt){
-  let playerChoice = evt.target
   if (evt.target.textContent === unidentifiedColor){
     score++
     usedColors.push(unidentifiedColor);
@@ -236,11 +236,13 @@ function renderUCM() {
   let trueLength = usedColors.filter(color => color.length > 0)
   if (trueLength.length === 0) {
     usedColorsMsg.textContent = `You haven't guessed any colors yet!`
-  } else if (trueLength !== 141 && trueLength !== 0) {
-    usedColorsMsg.textContent = `You've guessed ${trueLength.length} of 141 colors`
   } else {
-    usedColorsMsg.textContent = `You guessed 141 colors in ${countDownMsg}`
+    usedColorsMsg.textContent = `You've guessed ${trueLength.length} of 141 colors`
   }
+}
+
+function renderWinMsg() {
+  currentColor.textContent = `Congratulations! You named ${score} colors in ${countDownMsg}`
 }
 
 function playClick(){
