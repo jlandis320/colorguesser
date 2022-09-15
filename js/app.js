@@ -4,16 +4,15 @@ import { colors } from "../data/colors.js";
 /*-------------------------------- Variables --------------------------------*/
 let colorOptions = [];
 const usedColors = [];
+
 let score,
   timer,
-  winTime, 
   min,
   sec, 
   seconds,
   unidentifiedColor,
   currentCategory,
   thisCategory,
-  clickCount,
   gameStarted,
   countDownMsg
 
@@ -52,18 +51,12 @@ btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
 btnC.addEventListener("click", checkAnswer)
 btnD.addEventListener("click", checkAnswer)
-// btnA.addEventListener("click", revealName)
-// btnB.addEventListener("click", revealName)
-// btnC.addEventListener("click", revealName)
-// btnD.addEventListener("click", revealName)
 /*-------------------------------- Functions --------------------------------*/
 init();
 
 function init() {
   enableBtns()
-  clickCount = 0;
   score = 0;
-  winTime = 0 
   min = 0
   sec = 0
   seconds = 0
@@ -109,7 +102,6 @@ function getNewPaintswatch(){
     unidentifiedColor = getRandomColor(currentCategory);
     colorOptions.unshift(unidentifiedColor);
     colorOptions = getColorOptions(currentCategory);
-    // setTimeout(() => { render() }, 500)
     render()
     console.log("unidentified color in getNewPaintswatch: ", unidentifiedColor)
   }
@@ -119,28 +111,17 @@ function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
     usedColors.push(unidentifiedColor);
-    // playerChoice.style.backgroundColor = "green"
     playChime()
     renderScore()
     getNewPaintswatch()
   } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
-    // playerChoice.style.backgroundColor = "red"
     playBuzzer()
     getNewPaintswatch()
   }
   renderUCM()
 }
 
-
-function revealName(){
-  colorName.classList.toggle('placeholder')
-  colorName.textContent = unidentifiedColor
-  console.log(colorName.classList.value)
-//   if (score++){
-//     colorName.style.color = "green"
-//   } 
-}
 
 function startTimer(){
   timer = setInterval(tick, 1000)
@@ -229,10 +210,11 @@ function renderWinMsg() {
     currentColor.textContent = `Congratulations! You named ${score} colors.`
     currentColor.style.backgroundColor = "gold"
   } else {
-    currentColor.textContent = `Congratulations! You named ${score} colors in ${countDownMsg}`
+    currentColor.textContent = `Congratulations! You named ${score} colors in ${countDownMsg}.`
     currentColor.style.backgroundColor = "gold"
   }
 }
+
 
 function playClick(){
   clickSound.currentTime = 0
