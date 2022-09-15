@@ -1,28 +1,21 @@
 /*-------------------------------- Constants --------------------------------*/
-// all color arrays
 import { colors } from "../data/colors.js";
 
 /*-------------------------------- Variables --------------------------------*/
 let colorOptions = [];
 const usedColors = [];
 let score,
-  timeElapsed,
   timer,
   winTime, 
   min,
   sec, 
   seconds,
-  correctAnswerChosen,
   unidentifiedColor,
   currentCategory,
   thisCategory,
   clickCount,
   gameStarted,
   countDownMsg
-
-// timeElapsed
-// correctAnswerChosen ?
-// setTimeout(() => { console.log("hello")}, 2000)
 
 /*------------------------ Cached Element References ------------------------*/
 const colorPalette = document.querySelectorAll(".color-chart");
@@ -38,11 +31,12 @@ const countDown = document.querySelector(".timer")
 const startBtn = document.querySelector("#start-button")
 
 const usedColorsMsg = document.querySelector("#used-color-msg")
+
 const clickSound = new Audio("../audio/projector_click.mp3")
 const wrongAnswer = new Audio("../audio/wrong.mp3")
 const rightAnswer = new Audio("../audio/chime.mp3")
+const winSong = new Audio("../audio/level_up.mp3")
 
-const button = document.querySelectorAll(".button")
 const btnA = document.querySelector("#btn-0");
 const btnB = document.querySelector("#btn-1");
 const btnC = document.querySelector("#btn-2");
@@ -52,7 +46,7 @@ const btnD = document.querySelector("#btn-3");
 
 colorPalette.forEach((category) => category.addEventListener("click", handleClick));
 
-startBtn.addEventListener("click", startGame)
+startBtn.addEventListener("click", startTimer)
 
 btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
@@ -66,10 +60,7 @@ btnD.addEventListener("click", checkAnswer)
 init();
 
 function init() {
-  btnA.disabled = false
-  btnB.disabled = false
-  btnC.disabled = false
-  btnD.disabled = false
+  enableBtns()
   clickCount = 0;
   score = 0;
   winTime = 0 
@@ -79,15 +70,8 @@ function init() {
   correctAnswerChosen = false;
   unidentifiedColor = "";
   gameStarted = false
-  console.log("on init: ", colorName.classList.value);
 }
 
-function startGame() {
-  startTimer()
-  gameStarted = true
-}
-
-console.log("gameStarted = ", gameStarted)
 
 function handleClick(evt) {
   const categoryChoice = evt.target.id;
@@ -100,9 +84,7 @@ function handleClick(evt) {
   getNewPaintswatch()
 }
 
-// } else {
-//   colorName.textContent = "Click the start button!"
-// }
+
 function render(){
   renderPaintswatch()
   renderButtons()
@@ -144,7 +126,7 @@ function checkAnswer(evt){
   } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
     // playerChoice.style.backgroundColor = "red"
-    playWhoosh()
+    playBuzzer()
     getNewPaintswatch()
   }
   renderUCM()
@@ -242,6 +224,7 @@ function renderUCM() {
 }
 
 function renderWinMsg() {
+  playWin()
   if (countDownMsg === undefined) {
     currentColor.textContent = `Congratulations! You named ${score} colors.`
     currentColor.style.backgroundColor = "gold"
@@ -257,7 +240,7 @@ function playClick(){
   clickSound.play()
 }
 
-function playWhoosh(){
+function playBuzzer(){
   wrongAnswer.currentTime = 0 
   wrongAnswer.volume = .3
   wrongAnswer.play()
@@ -267,6 +250,12 @@ function playChime(){
   rightAnswer.currentTime = 0
   rightAnswer.volume = .5
   rightAnswer.play()
+}
+
+function playWin() {
+  winSong.currentTime = 0
+  winSong.volume = .5
+  winSong.play()
 }
 
 function disableBtns(){
