@@ -18,7 +18,8 @@ let score,
   thisCategory,
   clickCount,
   gameStarted,
-  countDownMsg
+  countDownMsg,
+  nightmareMode
 
 // timeElapsed
 // correctAnswerChosen ?
@@ -80,8 +81,9 @@ function init() {
   min = 0
   sec = 0
   seconds = 0
-  correctAnswerChosen = false;
-  unidentifiedColor = "";
+  nightmareMode = false
+  correctAnswerChosen = false
+  unidentifiedColor = ""
   gameStarted = false
   console.log("on init: ", colorName.classList.value);
 }
@@ -142,13 +144,14 @@ function checkAnswer(evt){
   if (evt.target.textContent === unidentifiedColor){
     score++
     usedColors.push(unidentifiedColor);
+    msgEl.innerText = `Nice, it was ${unidentifiedColor}`
     // playerChoice.style.backgroundColor = "green"
     playChime()
     renderScore()
     getNewPaintswatch()
   } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
-    msgEl.innerText = `Nah, it was ${unidentifiedColor}`
+    msgEl.innerText = `Nope, it was ${unidentifiedColor}`
     playWhoosh()
     getNewPaintswatch()
   }
