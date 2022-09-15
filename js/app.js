@@ -152,7 +152,6 @@ function checkAnswer(evt){
     score++
     usedColors.push(unidentifiedColor);
     msgEl.innerText = `Nice, it was ${unidentifiedColor}`
-    // playerChoice.style.backgroundColor = "green"
     playChime()
     renderScore()
     getNewPaintswatch()
@@ -169,10 +168,6 @@ function checkAnswer(evt){
 function revealName(){
   colorName.classList.toggle('placeholder')
   colorName.textContent = unidentifiedColor
-  console.log(colorName.classList.value)
-//   if (score++){
-//     colorName.style.color = "green"
-//   } 
 }
 
 function startTimer(){
@@ -209,7 +204,6 @@ function getColorOptions(colorArray) {
 function convertNamedToHex(arr){
   return arr.map(color => colorValuesLUT.find(colorObj => color === colorObj.name.toLowerCase())?.hex ?? color)
 }
-
 
 function getRandomColor(colorArray) {
   let newColor = colorArray[Math.floor(Math.random() * colorArray.length)];
