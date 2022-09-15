@@ -271,7 +271,6 @@ function playChime(){
 
 function disableBtns(){
   btnA.disabled = true
-  btnA.classList.remove(".button")
   btnB.disabled = true
   btnC.disabled = true
   btnD.disabled = true

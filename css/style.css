@@ -30,11 +30,11 @@ h1 {
 }
 
 p {
-  grid-area: 2 / 1 / 3 / 3;
+  grid-area: 2 / 1 / 3 / 2;
   display:flex;
   height: fit-content;
   place-self: center left;
-  margin-left: 50px;
+  padding-left: 15%;
 }
 
 section.color-chart {
@@ -99,8 +99,8 @@ section > *:hover{
   grid-area: 5 / 1 / 6 / 2;
   border: 2px solid black;
   background-color: rgb(255, 231, 142);
-  margin: 60px;
-  padding: 35px;
+  margin: 5%;
+  padding: 5%;
   text-align: center;
 }
 
