@@ -40,6 +40,10 @@ const startBtn = document.querySelector("#start-button")
 
 const bodyEl = document.querySelector('body')
 
+const nightMareModeBtn = document.querySelector('#dont-click')
+
+const titleH1El = document.querySelector('h1')
+
 const msgEl = document.querySelector('#msg')
 
 const usedColorsMsg = document.querySelector("#used-color-msg")
@@ -63,6 +67,8 @@ btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
 btnC.addEventListener("click", checkAnswer)
 btnD.addEventListener("click", checkAnswer)
+
+nightMareModeBtn.addEventListener('click', toggleNightmareMode)
 // btnA.addEventListener("click", revealName)
 // btnB.addEventListener("click", revealName)
 // btnC.addEventListener("click", revealName)
@@ -82,6 +88,7 @@ function init() {
   sec = 0
   seconds = 0
   nightmareMode = false
+  titleH1El.style.color = 'mediumslateblue'
   correctAnswerChosen = false
   unidentifiedColor = ""
   gameStarted = false
@@ -136,7 +143,7 @@ function getNewPaintswatch(){
     render()
     console.log("unidentified color in getNewPaintswatch: ", unidentifiedColor)
   }
-  changeBackgroundAtRandom()
+  if(nightmareMode) changeBackgroundAtRandom()
 }
 
 function checkAnswer(evt){
@@ -255,7 +262,7 @@ function playClick(){
   clickSound.currentTime = 0
   clickSound.volume = .5
   clickSound.play()
-  changeBackgroundAtRandom()
+  if(nightmareMode) changeBackgroundAtRandom()
 }
 
 function changeBackgroundAtRandom(){
@@ -289,6 +296,8 @@ function enableBtns() {
   btnD.disabled = false
 }
 
-function nightmareMode(){
-
+function toggleNightmareMode(){
+  nightmareMode = true
+  titleH1El.style.color = 'red'
+  changeBackgroundAtRandom()
 }
