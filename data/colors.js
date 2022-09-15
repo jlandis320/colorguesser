@@ -188,4 +188,16 @@ const grays = [
   }
 // total = 141 colors, including rebeccapurple
 
-  export { colors }
+const allColors = [
+  ...reds ,
+  ...oranges,
+  ...yellows,
+  ...greens,
+  ...blues,
+  ...purples,
+  ...browns,
+  ...whites,
+  ...grays,
+]
+
+  export { colors, allColors }

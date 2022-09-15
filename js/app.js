@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 // all color arrays
-import { colors } from "../data/colors.js";
+import { colors, allColors } from "../data/colors.js";
 
 /*-------------------------------- Variables --------------------------------*/
 let colorOptions = [];
@@ -36,6 +36,8 @@ const colorName = document.querySelector(".color-name");
 const countDown = document.querySelector(".timer")
 
 const startBtn = document.querySelector("#start-button")
+
+const bodyEl = document.querySelector('body')
 
 const usedColorsMsg = document.querySelector("#used-color-msg")
 const clickSound = new Audio("../audio/projector_click.mp3")
@@ -130,6 +132,7 @@ function getNewPaintswatch(){
     render()
     console.log("unidentified color in getNewPaintswatch: ", unidentifiedColor)
   }
+  changeBackgroundAtRandom()
 }
 
 function checkAnswer(evt){
@@ -247,6 +250,11 @@ function playClick(){
   clickSound.currentTime = 0
   clickSound.volume = .5
   clickSound.play()
+  changeBackgroundAtRandom()
+}
+
+function changeBackgroundAtRandom(){
+  bodyEl.style.backgroundColor = allColors[Math.floor(Math.random()*allColors.length)]
 }
 
 function playWhoosh(){
@@ -274,4 +282,8 @@ function enableBtns() {
   btnB.disabled = false
   btnC.disabled = false
   btnD.disabled = false
+}
+
+function nightmareMode(){
+  
 }
