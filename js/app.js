@@ -20,7 +20,6 @@ let score,
   clickCount,
   gameStarted
 
-  let trueLength = usedColors.filter(color => color.length > 0)
 // timeElapsed
 // correctAnswerChosen ?
 // setTimeout(() => { console.log("hello")}, 2000)
@@ -59,10 +58,10 @@ btnA.addEventListener("click", checkAnswer)
 btnB.addEventListener("click", checkAnswer)
 btnC.addEventListener("click", checkAnswer)
 btnD.addEventListener("click", checkAnswer)
-btnA.addEventListener("click", revealName)
-btnB.addEventListener("click", revealName)
-btnC.addEventListener("click", revealName)
-btnD.addEventListener("click", revealName)
+// btnA.addEventListener("click", revealName)
+// btnB.addEventListener("click", revealName)
+// btnC.addEventListener("click", revealName)
+// btnD.addEventListener("click", revealName)
 /*-------------------------------- Functions --------------------------------*/
 init();
 
@@ -110,7 +109,8 @@ function render(){
 }
 
 function getNewPaintswatch(){
-  if (usedColors.length === 141) {
+  let trueLength = usedColors.filter(color => color.length > 0)
+  if (trueLength.length === 141) {
     thisCategory.textContent = "X"
     colorName.textContent = "How'd you do?";
     btnA.disabled = true
@@ -118,7 +118,7 @@ function getNewPaintswatch(){
     btnC.disabled = true
     btnD.disabled = true
     return;
-  } else if (currentCategory.every(color => usedColors.includes(color)) && usedColors.length < 141) {
+  } else if (currentCategory.every(color => trueLength.includes(color)) && trueLength.length < 141) {
     btnA.disabled = true
     btnB.disabled = true
     btnC.disabled = true
@@ -127,10 +127,16 @@ function getNewPaintswatch(){
     thisCategory.textContent = "X"
     return
   } else {
+    btnA.disabled = false
+    btnB.disabled = false
+    btnC.disabled = false
+    btnD.disabled = false
     unidentifiedColor = getRandomColor(currentCategory);
     colorOptions.unshift(unidentifiedColor);
-    setTimeout(() => {render()}, 500);
     colorOptions = getColorOptions(currentCategory);
+    // setTimeout(() => { render() }, 500)
+    render()
+    console.log("unidentified color in getNewPaintswatch: ", unidentifiedColor)
   }
 }
 
@@ -151,9 +157,12 @@ function checkAnswer(evt){
 
 
 function revealName(){
-  colorName.classList.remove('placeholder')
+  colorName.classList.toggle('placeholder')
   colorName.textContent = unidentifiedColor
   console.log(colorName.classList.value)
+//   if (score++){
+//     colorName.style.color = "green"
+//   } 
 }
 
 function startTimer(){
@@ -197,7 +206,8 @@ function getRandomColor(colorArray) {
 
 function renderPaintswatch() {
   currentColor.style.backgroundColor = unidentifiedColor;
-  colorName.classList.add('placeholder') 
+  console.log("unidentified color in renderPaintswatch: ", unidentifiedColor);
+  // colorName.classList.add('placeholder') 
 }
 
 function renderButtons() {
@@ -229,7 +239,7 @@ function renderScore() {
 }
 
 function renderUCM() {
-  // let trueLength = usedColors.filter(color => color.length > 0)
+  let trueLength = usedColors.filter(color => color.length > 0)
   if (trueLength.length === 0) {
     usedColorsMsg.textContent = `You haven't guessed any colors yet!`
   } else {
