@@ -17,7 +17,8 @@ let score,
   currentCategory,
   thisCategory,
   clickCount,
-  gameStarted
+  gameStarted,
+  countDownMsg
 
 // timeElapsed
 // correctAnswerChosen ?
@@ -160,12 +161,8 @@ function revealName(){
 }
 
 function startTimer(){
-  let trueLength = usedColors.filter(color => color.length > 0)
-  if (trueLength.length === 141){
-    clearInterval(timer)
-  }
   timer = setInterval(tick, 1000)
-  }
+}
 
 function tick(){
   seconds++
@@ -177,8 +174,10 @@ function renderTime(){
   sec = seconds % 60
   if (sec < 10){
     countDown.textContent = `${min}:0${sec}`
+    countDownMsg = countDown.textContent
   } else {
     countDown.textContent = `${min}:${sec}`
+    countDownMsg = countDown.textContent
   }
 }
 
@@ -237,8 +236,11 @@ function renderUCM() {
   let trueLength = usedColors.filter(color => color.length > 0)
   if (trueLength.length === 0) {
     usedColorsMsg.textContent = `You haven't guessed any colors yet!`
+  } else if (trueLength !== 141 && trueLength !== 0) {
+    usedColorsMsg.textContent = `You've guessed ${trueLength.length} of 141 colors`
   } else {
-  usedColorsMsg.textContent = `You've guessed ${trueLength.length} of 141 colors`}
+    usedColorsMsg.textContent = `You guessed 141 colors in ${countDownMsg}`
+  }
 }
 
 function playClick(){
