@@ -39,6 +39,8 @@ const startBtn = document.querySelector("#start-button")
 
 const bodyEl = document.querySelector('body')
 
+const msgEl = document.querySelector('#msg')
+
 const usedColorsMsg = document.querySelector("#used-color-msg")
 const clickSound = new Audio("../audio/projector_click.mp3")
 const wrongAnswer = new Audio("../audio/wrong.mp3")
@@ -146,7 +148,7 @@ function checkAnswer(evt){
     getNewPaintswatch()
   } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
-    // playerChoice.style.backgroundColor = "red"
+    msgEl.innerText = `Nah, it was ${unidentifiedColor}`
     playWhoosh()
     getNewPaintswatch()
   }
@@ -285,5 +287,5 @@ function enableBtns() {
 }
 
 function nightmareMode(){
-  
+
 }
