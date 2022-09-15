@@ -111,7 +111,7 @@ function render(){
 function getNewPaintswatch(){
   let trueLength = usedColors.filter(color => color.length > 0)
   if (trueLength.length === 141) {
-    thisCategory.textContent = "X"
+    thisCategory.style.opacity = "25%"
     colorName.textContent = "How'd you do?";
     btnA.disabled = true
     btnB.disabled = true
@@ -124,7 +124,7 @@ function getNewPaintswatch(){
     btnC.disabled = true
     btnD.disabled = true
     colorName.textContent = "choose another category from the palette"
-    thisCategory.textContent = "X"
+    thisCategory.style.opacity = "25%"
     return
   } else {
     btnA.disabled = false

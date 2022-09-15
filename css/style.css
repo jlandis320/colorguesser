@@ -93,7 +93,6 @@ section > *:hover{
   background-color: rgba(255, 255, 255, 0.958);
 }
 
-
 .messages {
   grid-area: 5 / 1 / 6 / 2;
   border: 2px solid black;
