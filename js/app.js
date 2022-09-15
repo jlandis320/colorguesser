@@ -241,13 +241,13 @@ function renderUCM() {
   }
 }
 
-renderWinMsg()
-
 function renderWinMsg() {
   if (countDownMsg === undefined) {
     currentColor.textContent = `Congratulations! You named ${score} colors.`
+    currentColor.style.backgroundColor = "gold"
   } else {
     currentColor.textContent = `Congratulations! You named ${score} colors in ${countDownMsg}`
+    currentColor.style.backgroundColor = "gold"
   }
 }
 
