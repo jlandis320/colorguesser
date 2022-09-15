@@ -8,7 +8,6 @@ const usedColors = [];
 let score,
   timeElapsed,
   timer,
-  timerIntervalId,
   winTime, 
   min,
   sec, 
@@ -38,11 +37,11 @@ const countDown = document.querySelector(".timer")
 const startBtn = document.querySelector("#start-button")
 
 const usedColorsMsg = document.querySelector("#used-color-msg")
-// const allBtns = document.querySelectorAll(".buttons")
 const clickSound = new Audio("../audio/projector_click.mp3")
 const wrongAnswer = new Audio("../audio/wrong.mp3")
 const rightAnswer = new Audio("../audio/chime.mp3")
 
+const button = document.querySelectorAll(".button")
 const btnA = document.querySelector("#btn-0");
 const btnB = document.querySelector("#btn-1");
 const btnC = document.querySelector("#btn-2");
@@ -123,7 +122,7 @@ function getNewPaintswatch(){
     btnB.disabled = true
     btnC.disabled = true
     btnD.disabled = true
-    colorName.textContent = "choose another category from the palette"
+    colorName.textContent = "Choose another category from the palette"
     thisCategory.style.opacity = "25%"
     return
   } else {
@@ -131,6 +130,7 @@ function getNewPaintswatch(){
     btnB.disabled = false
     btnC.disabled = false
     btnD.disabled = false
+    colorName.textContent = "What color am I?"
     unidentifiedColor = getRandomColor(currentCategory);
     colorOptions.unshift(unidentifiedColor);
     colorOptions = getColorOptions(currentCategory);
@@ -141,14 +141,17 @@ function getNewPaintswatch(){
 }
 
 function checkAnswer(evt){
+  let playerChoice = evt.target
   if (evt.target.textContent === unidentifiedColor){
     score++
     usedColors.push(unidentifiedColor);
+    // playerChoice.style.backgroundColor = "green"
     playChime()
     renderScore()
     getNewPaintswatch()
   } else if (evt.target.textContent !== unidentifiedColor) {
     usedColors.push(unidentifiedColor);
+    // playerChoice.style.backgroundColor = "red"
     playWhoosh()
     getNewPaintswatch()
   }
@@ -166,10 +169,11 @@ function revealName(){
 }
 
 function startTimer(){
-  if (usedColors.length === 141){
-    clearInterval(timerIntervalId)
+  let trueLength = usedColors.filter(color => color.length > 0)
+  if (trueLength.length === 141){
+    clearInterval(timer)
   }
-  timerIntervalId = setInterval(tick, 1000)
+  timer = setInterval(tick, 1000)
   }
 
 function tick(){

@@ -1,10 +1,11 @@
 body {
-  background-color: blanchedalmond;
+  background-color:lemonchiffon;
   font-family: 'Jost', sans-serif;
   display: flex;
   height: 98vh;
   align-items: center;
   justify-content: center;
+  font-size: 1.3em;
 }
 
 #wrapper {
@@ -21,6 +22,7 @@ h1 {
   grid-area: 1 / 1 / 2 / 4;
   padding-top: 20px;
   font-family: 'Righteous', cursive;
+  font-size: 60px;
   display: block;
   text-align: center;
   color: mediumslateblue;
@@ -90,12 +92,13 @@ section > *:hover{
 }
 
 #whites {
-  background-color: rgba(255, 255, 255, 0.958);
+  background-color: white;
 }
 
 .messages {
   grid-area: 5 / 1 / 6 / 2;
   border: 2px solid black;
+  background-color: rgb(255, 231, 142);
   margin: 60px;
   padding: 35px;
   text-align: center;
@@ -178,3 +181,11 @@ section > *:hover{
 }
 
 
+button {
+  border: 2px solid black;
+  background-color: rgb(255, 231, 142);
+}
+
+button:hover {
+  filter: invert(100%);
+}
