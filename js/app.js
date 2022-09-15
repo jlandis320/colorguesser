@@ -111,25 +111,16 @@ function getNewPaintswatch(){
   let trueLength = usedColors.filter(color => color.length > 0)
   if (trueLength.length === 141) {
     thisCategory.style.opacity = "25%"
-    colorName.textContent = "How'd you do?";
-    btnA.disabled = true
-    btnB.disabled = true
-    btnC.disabled = true
-    btnD.disabled = true
+    clearInterval(timer)
+    disableBtns()
     return;
   } else if (currentCategory.every(color => trueLength.includes(color)) && trueLength.length < 141) {
-    btnA.disabled = true
-    btnB.disabled = true
-    btnC.disabled = true
-    btnD.disabled = true
+    disableBtns()
     colorName.textContent = "Choose another category from the palette"
     thisCategory.style.opacity = "25%"
     return
   } else {
-    btnA.disabled = false
-    btnB.disabled = false
-    btnC.disabled = false
-    btnD.disabled = false
+    enableBtns()
     colorName.textContent = "What color am I?"
     unidentifiedColor = getRandomColor(currentCategory);
     colorOptions.unshift(unidentifiedColor);
@@ -268,4 +259,17 @@ function playChime(){
   rightAnswer.play()
 }
 
+function disableBtns(){
+  btnA.disabled = true
+  btnA.classList.remove(".button")
+  btnB.disabled = true
+  btnC.disabled = true
+  btnD.disabled = true
+}
 
+function enableBtns() {
+  btnA.disabled = false
+  btnB.disabled = false
+  btnC.disabled = false
+  btnD.disabled = false
+}
