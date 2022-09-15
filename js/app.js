@@ -83,6 +83,7 @@ function render(){
   renderButtons()
 }
 
+// https://www.designcise.com/web/tutorial/how-to-check-if-an-array-contains-all-elements-of-another-array-in-javascript
 function getNewPaintswatch(){
   let trueLength = usedColors.filter(color => color.length > 0)
   if (trueLength.length === 141) {
