@@ -14,7 +14,8 @@ https://name-these-colors.netlify.app/
 
 ## Screenshots
 ![Screenshot of unplayed color guesser](assets/roygbiv.png) 
-![Screenshot of color guesser midway through game](assets/roygbivplayed.png)
+![Screenshot of color guesser midway through game](assets/roygbiv2.png)
+![Screenshot of color guesser after finishing the game](assets/roygbiv3.png)
 
 ## Technologies Used
 
@@ -22,10 +23,12 @@ Javascript, HTML, CSS
 
 ## Next Steps
 ![Screenshot of mobile wireframe](assets/roygbiv_mobile.png)
-1. Create mobile design
-2. Easy mode - white background
-3. Hard mode - hexcodes
-4. Add score per category
+1. Add animations to clickable elements
+2. Display correct name and delay render
+3. Create mobile design
+4. Easy mode - white background
+5. Hard mode - hexcodes
+6. Add score per category
 
 ## Thanks to
 
