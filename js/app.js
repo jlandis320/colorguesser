@@ -162,8 +162,6 @@ function getRandomColor(colorArray) {
 
 function renderPaintswatch() {
   currentColor.style.backgroundColor = unidentifiedColor;
-  console.log("unidentified color in renderPaintswatch: ", unidentifiedColor);
-  // colorName.classList.add('placeholder') 
 }
 
 function renderButtons() {
