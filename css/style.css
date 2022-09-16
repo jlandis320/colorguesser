@@ -27,6 +27,7 @@ h1 {
   text-align: center;
   color: mediumslateblue;
   height: fit-content;
+  text-shadow: 3px 3px black;
 }
 
 p {
@@ -43,7 +44,7 @@ section.color-chart {
   display: grid;
   grid-template-rows: repeat(3, minmax(10vh, auto));
   grid-template-columns: repeat(3, minmax(10vh, auto));
-  gap: 2vmin;
+  gap: 3vmin;
 }
 
 /* individual color dots */
@@ -53,7 +54,7 @@ section > * {
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;
-  box-shadow: .07em .07em;
+  box-shadow: .05em .05em;
 }
 
 section > *:hover{
@@ -115,6 +116,7 @@ section > *:hover{
   grid-template-columns: 2;
   grid-template-rows: 2;
   gap: 2vmin;
+  width: 100%;
 }
 
 .buttons > * {
