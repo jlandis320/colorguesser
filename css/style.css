@@ -53,6 +53,7 @@ section > * {
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;
+  box-shadow: .07em .07em;
 }
 
 section > *:hover{
@@ -102,6 +103,7 @@ section > *:hover{
   margin: 5%;
   padding: 5%;
   text-align: center;
+  box-shadow: .2em .2em;
 }
 
 .buttons {
@@ -120,6 +122,7 @@ section > *:hover{
   display: flex;
   justify-content: center;
   padding: 10px;
+  box-shadow: .2em .2em;
 }
 
 .button:hover {
@@ -157,6 +160,7 @@ section > *:hover{
   padding: 5px;
   width: fit-content;
   height: fit-content;
+  box-shadow: .2em .2em;
 }
 
 .paintswatch {
@@ -167,6 +171,7 @@ section > *:hover{
   border: 2px solid black;
   align-items: center;
   justify-content: center;
+  box-shadow: .2em .2em;
 }
 
 .placeholder {
