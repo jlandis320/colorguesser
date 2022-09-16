@@ -29,8 +29,6 @@ Javascript, HTML, CSS
 
 ## Thanks to
 
-Favicon comes from flaticon.com: <a href="https://www.flaticon.com/free-icons/color" title="color icons">Color icons created by Soodesign - Flaticon</a>
-
 All categories come from: https://htmlcolorcodes.com/color-names/
 
 Sounds were found at freesound.org: https://freesound.org/people/chungus43A/sounds/595665/, https://freesound.org/people/philRacoIndie/sounds/551543/, https://freesound.org/people/Rizzard/sounds/558909/, https://freesound.org/people/GreekIrish/sounds/254713/

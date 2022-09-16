@@ -13,7 +13,6 @@ let score,
   unidentifiedColor,
   currentCategory,
   thisCategory,
-  gameStarted,
   countDownMsg
 
 /*------------------------ Cached Element References ------------------------*/
@@ -62,7 +61,6 @@ function init() {
   seconds = 0
   correctAnswerChosen = false;
   unidentifiedColor = "";
-  gameStarted = false
 }
 
 
