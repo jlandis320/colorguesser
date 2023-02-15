@@ -59,7 +59,6 @@ function init() {
   min = 0
   sec = 0
   seconds = 0
-  correctAnswerChosen = false;
   unidentifiedColor = "";
 }
 
