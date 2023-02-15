@@ -102,7 +102,6 @@ function getNewPaintswatch(){
     colorOptions.unshift(unidentifiedColor);
     colorOptions = getColorOptions(currentCategory);
     render()
-    console.log("unidentified color in getNewPaintswatch: ", unidentifiedColor)
   }
 }
 
